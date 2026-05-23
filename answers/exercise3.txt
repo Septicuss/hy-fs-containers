@@ -1,0 +1,39 @@
+septicuss@Vlad:.../answers$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS          PORTS     NAMES
+9a99641699c7   ubuntu    "bash"    5 minutes ago   Up 27 seconds             jovial_rosalind
+septicuss@Vlad:.../answers$ docker kill jovial_rosalind
+jovial_rosalind
+septicuss@Vlad:.../answers$ docker ps -a
+CONTAINER ID   IMAGE                              COMMAND                  CREATED         STATUS                       PORTS     NAMES
+9a99641699c7   ubuntu                             "bash"                   5 minutes ago   Exited (137) 7 seconds ago             jovial_rosalind
+d27166e77e8e   hello-world                        "/hello"                 8 minutes ago   Exited (0) 8 minutes ago               elated_golick
+septicuss@Vlad:.../answers$ docker start -i jovial_rosalind
+root@9a99641699c7:/# apt-get update
+Get:1 http://archive.ubuntu.com/ubuntu resolute InRelease [136 kB]
+Get:2 http://security.ubuntu.com/ubuntu resolute-security InRelease [136 kB]
+Get:3 http://archive.ubuntu.com/ubuntu resolute-updates InRelease [136 kB]
+Get:4 http://security.ubuntu.com/ubuntu resolute-security/restricted amd64 Packages [216 kB]
+Get:5 http://security.ubuntu.com/ubuntu resolute-security/universe amd64 Packages [53.9 kB]
+Get:6 http://security.ubuntu.com/ubuntu resolute-security/main amd64 Packages [102 kB]
+Get:7 http://archive.ubuntu.com/ubuntu resolute-backports InRelease [136 kB]
+Get:8 http://archive.ubuntu.com/ubuntu resolute/multiverse amd64 Packages [352 kB]
+Get:9 http://archive.ubuntu.com/ubuntu resolute/universe amd64 Packages [20.1 MB]
+Get:10 http://archive.ubuntu.com/ubuntu resolute/restricted amd64 Packages [189 kB]
+Get:11 http://archive.ubuntu.com/ubuntu resolute/main amd64 Packages [1874 kB]
+Get:12 http://archive.ubuntu.com/ubuntu resolute-updates/restricted amd64 Packages [216 kB]
+Get:13 http://archive.ubuntu.com/ubuntu resolute-updates/main amd64 Packages [109 kB]
+Get:14 http://archive.ubuntu.com/ubuntu resolute-updates/multiverse amd64 Packages [3584 B]
+Get:15 http://archive.ubuntu.com/ubuntu resolute-updates/universe amd64 Packages [57.1 kB]
+Fetched 23.8 MB in 2s (10.0 MB/s)
+Reading package lists... Done
+root@9a99641699c7:/# apt-get -y install nano
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+[.......]
+Unpacking nano (8.7.1-1) ...
+Setting up nano (8.7.1-1) ...
+root@9a99641699c7:/# nano /usr/src/app/index.js
+root@9a99641699c7:/# cat usr/src/app/index.js
+console.log('Hello World')
+root@9a99641699c7:/# exit
