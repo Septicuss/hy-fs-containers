@@ -1,0 +1,26 @@
+septicuss@Vlad:.../answers$ docker start -i jovial_rosalind
+
+root@9a99641699c7:/# curl -sL https://deb.nodesource.com/setup_24.x | bash
+bash: curl: command not found
+
+root@9a99641699c7:/# apt-get install curl
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Solving dependencies... Done
+The following additional packages will be installed:
+[......]
+Running hooks in /etc/ca-certificates/update.d...
+done.
+
+root@9a99641699c7:/# curl -sL https://deb.nodesource.com/setup_24.x | bash
+2026-05-23 09:10:17 - Installing pre-requisites
+Hit:1 http://archive.ubuntu.com/ubuntu resolute InRelease
+Hit:2 http://archive.ubuntu.com/ubuntu resolute-updates InRelease
+[......]
+Setting up nodejs (24.15.0-1nodesource1) ...
+Processing triggers for libc-bin (2.43-2ubuntu2) ...
+
+root@9a99641699c7:/# node usr/src/app/index.js
+Hello World
+root@9a99641699c7:/#
