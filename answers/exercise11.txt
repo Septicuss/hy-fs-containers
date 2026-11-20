@@ -1,0 +1,11 @@
+septicuss@Vlad:.../todo-backend$ docker exec -it todo-backend-redis-1 redis-cli
+127.0.0.1:6379> KEYS todos
+1) "todos"
+127.0.0.1:6379> KEYS *
+1) "todos"
+127.0.0.1:6379> GET todos
+"12"
+127.0.0.1:6379> SET todos 9001
+OK
+127.0.0.1:6379> DEL todos
+(integer) 1
