@@ -1,0 +1,62 @@
+septicuss@Vlad:.../todo-backend$ docker compose -f docker-compose.dev.yml up -d
+[+] up 13/13
+ ✔ Image mongo                    Pulled                                                                                                                    27.5s
+ ✔ Volume todo-backend_mongo_data Created                                                                                                                    0.0s
+ ... 2 more
+septicuss@Vlad:.../todo-backend$ docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                           NAMES
+b6a7a3c6ec67   mongo     "docker-entrypoint.s…"   19 minutes ago   Up 19 minutes   0.0.0.0:3456->27017/tcp, [::]:3456->27017/tcp   todo-backend-mongo-1
+septicuss@Vlad:.../todo-backend$ docker exec -it todo-backend-mongo-1 mongosh -u the_username -p the_password -db the_database
+Current Mongosh Log ID: 6b006ce3fe41619e860c7747
+Connecting to:          mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.14.2
+Using MongoDB:          9.0.8
+Using Mongosh:          2.14.2
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2026-11-20T15:29:35.462+00:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+   2026-11-20T15:29:35.787+00:00: For customers running the current memory allocator, we suggest changing the contents of the following sysfsFile
+   2026-11-20T15:29:35.787+00:00: For customers running the current memory allocator, we suggest changing the contents of the following sysfsFile
+   2026-11-20T15:29:35.787+00:00: We suggest setting the contents of sysfsFile to 0.
+------
+
+test> show dbs
+admin         100.00 KiB
+config         96.00 KiB
+local          72.00 KiB
+the_database   52.00 KiB
+test> use the_database
+switched to db the_database
+the_database> show collections
+todos
+the_database> db.todos.find({})
+[
+  { _id: ObjectId('6b00675e89ed5ed8ca0d4c3b'), text: 'Meow', done: true },
+  {
+    _id: ObjectId('6b00675e89ed5ed8ca0d4c3c'),
+    text: 'Learn about containers',
+    done: false
+  }
+]
+the_database> db.todos.insertOne({"text": "Increase the number of tools in my tool belt", "done": false})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6b006d3bfe41619e860c7748')
+}
+the_database> db.todos.find({})
+[
+  { _id: ObjectId('6b00675e89ed5ed8ca0d4c3b'), text: 'Meow', done: true },
+  {
+    _id: ObjectId('6b00675e89ed5ed8ca0d4c3c'),
+    text: 'Learn about containers',
+    done: false
+  },
+  {
+    _id: ObjectId('6b006d3bfe41619e860c7748'),
+    text: 'Increase the number of tools in my tool belt',
+    done: false
+  }
+]
+the_database>
